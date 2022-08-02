@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 
 const HTTP_OK_STATUS = 200;
 const PORT = '3000';
+const talkerJson = './talker.json';
 
 // não remova esse endpoint, e para o avaliadorGK funcionar
 app.get('/', (_request, response) => {
@@ -20,13 +21,13 @@ app.get('/', (_request, response) => {
 });
 
 app.get('/talker', (_req, res) => {
-  const data = JSON.parse(fs.readFileSync('./talker.json', 'utf8'));
+  const data = JSON.parse(fs.readFileSync(talkerJson, 'utf8'));
   return res.status(200).json(data);
 });
 
 app.get('/talker/:id', (req, res) => {
   const { id } = req.params;
-  const data = JSON.parse(fs.readFileSync('./talker.json', 'utf8'));
+  const data = JSON.parse(fs.readFileSync(talkerJson, 'utf8'));
   const filteredTalker = data.find((talker) => Number(talker.id) === Number(id));
 
   if (!filteredTalker) {
@@ -59,13 +60,13 @@ watchedMiddleware, rateMiddleware, async (req, res) => {
   const { name, age, talk } = req.body;
   const { watchedAt, rate } = talk;
   
-  const talkers = JSON.parse(fs.readFileSync('./talker.json', 'utf8'));
+  const talkers = JSON.parse(fs.readFileSync(talkerJson, 'utf8'));
   const id = talkers.length + 1;
 
   const newTalker = { id, name, age, talk: { watchedAt, rate } };
 
   talkers.push(newTalker);
-  await fsPromise.writeFile('./talker.json', JSON.stringify(talkers));
+  await fsPromise.writeFile(talkerJson, JSON.stringify(talkers));
 
   return res.status(201).json(newTalker);
 });
@@ -73,9 +74,9 @@ watchedMiddleware, rateMiddleware, async (req, res) => {
 app.delete('/talker/:id', tokenMiddleware, async (req, res) => {
   const { id } = req.params;
 
-  const talkers = JSON.parse(fs.readFileSync('./talker.json', 'utf8'));
+  const talkers = JSON.parse(fs.readFileSync(talkerJson, 'utf8'));
   const returnedTalkers = talkers.filter((talker) => Number(talker.id) !== Number(id));
-  await fsPromise.writeFile('./talker.json', JSON.stringify(returnedTalkers));
+  await fsPromise.writeFile(talkerJson, JSON.stringify(returnedTalkers));
 
   return res.status(204).send('');
 });
