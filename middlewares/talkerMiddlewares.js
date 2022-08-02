@@ -52,8 +52,8 @@ function rateMiddleware(req, res, next) {
 
   const { talk: { rate } } = req.body;
 
-  if (!rate || rate.length === 0) return res.status(400).json({ message: nullRate });
   if (Number(rate) < 1 || Number(rate) > 5) return res.status(400).json({ message: invalidRate });
+  if (!rate || rate.length === 0) return res.status(400).json({ message: nullRate });
 
   next();
 }

@@ -84,6 +84,24 @@ watchedMiddleware, rateMiddleware, async (req, res) => {
   return res.status(201).json(newTalker);
 });
 
+app.put('/talker/:id', tokenMiddleware, nameMiddleware, ageMiddleware, talkMiddleware,
+watchedMiddleware, rateMiddleware, async (req, res) => {
+  const { id } = req.params;
+  const { name, age, talk } = req.body;
+  const { watchedAt, rate } = talk;
+
+  const talkers = JSON.parse(fs.readFileSync(talkerJson, 'utf8'));
+
+  const editedTalker = { id: parseInt(id, 10), name, age, talk: { watchedAt, rate } };
+
+  const filteredTalkers = talkers.filter((talker) => Number(talker.id) !== Number(id));
+  filteredTalkers.push(editedTalker);
+
+  await fsPromise.writeFile(talkerJson, JSON.stringify(filteredTalkers));
+
+  return res.status(200).json(editedTalker);
+});
+
 app.delete('/talker/:id', tokenMiddleware, async (req, res) => {
   const { id } = req.params;
 
