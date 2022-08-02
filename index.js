@@ -1,7 +1,12 @@
 const fs = require('fs');
+const fsPromise = require('fs').promises;
 const express = require('express');
 const bodyParser = require('body-parser');
 const crypto = require('crypto');
+const { tokenMiddleware } = require('./middlewares/tokenMiddleware');
+const {
+  nameMiddleware, ageMiddleware, watchedMiddleware, talkMiddleware, rateMiddleware,
+} = require('./middlewares/talkerMiddlewares');
 
 const app = express();
 app.use(bodyParser.json());
@@ -47,6 +52,22 @@ app.post('/login', (req, res) => {
   if (password.length < 6) return res.status(400).json({ message: wrongPassword });
 
   return res.status(200).json({ token: tokenValue });
+});
+
+app.post('/talker', tokenMiddleware, nameMiddleware, ageMiddleware, talkMiddleware,
+watchedMiddleware, rateMiddleware, async (req, res) => {
+  const { name, age, talk } = req.body;
+  const { watchedAt, rate } = talk;
+  
+  const talkers = JSON.parse(fs.readFileSync('./talker.json', 'utf8'));
+  const id = talkers.length + 1;
+
+  const newTalker = { id, name, age, talk: { watchedAt, rate } };
+
+  talkers.push(newTalker);
+  await fsPromise.writeFile('./talker.json', JSON.stringify(talkers));
+
+  return res.status(201).json(newTalker);
 });
 
 app.listen(PORT, () => {
