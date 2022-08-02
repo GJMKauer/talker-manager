@@ -25,6 +25,19 @@ app.get('/talker', (_req, res) => {
   return res.status(200).json(data);
 });
 
+app.get('/talker/search', tokenMiddleware, (req, res) => {
+  const { q } = req.query;
+  const talkers = JSON.parse(fs.readFileSync(talkerJson, 'utf8'));
+
+  if (!q || q.length === 0) return res.status(200).json(talkers);
+
+  const filteredTalkers = talkers.filter((talker) => talker.name.includes(q));
+
+  if (filteredTalkers.length === 0) return res.status(200).send('');
+
+  return res.status(200).json(filteredTalkers);
+});
+
 app.get('/talker/:id', (req, res) => {
   const { id } = req.params;
   const data = JSON.parse(fs.readFileSync(talkerJson, 'utf8'));
