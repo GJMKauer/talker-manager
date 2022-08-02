@@ -70,6 +70,16 @@ watchedMiddleware, rateMiddleware, async (req, res) => {
   return res.status(201).json(newTalker);
 });
 
+app.delete('/talker/:id', tokenMiddleware, async (req, res) => {
+  const { id } = req.params;
+
+  const talkers = JSON.parse(fs.readFileSync('./talker.json', 'utf8'));
+  const returnedTalkers = talkers.filter((talker) => Number(talker.id) !== Number(id));
+  await fsPromise.writeFile('./talker.json', JSON.stringify(returnedTalkers));
+
+  return res.status(204).send('');
+});
+
 app.listen(PORT, () => {
   console.log('Online');
 });
