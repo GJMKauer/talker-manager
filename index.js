@@ -30,9 +30,22 @@ app.get('/talker/:id', (req, res) => {
   return res.status(200).send(filteredTalker);
 });
 
-app.post('/login', (_req, res) => {
-  // const { email, password } = req.body;
+app.post('/login', (req, res) => {
   const tokenValue = crypto.randomBytes(8).toString('hex');
+
+  const mailValidator = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
+  const nullEmail = 'O campo "email" é obrigatório';
+  const wrongEmail = 'O "email" deve ter o formato "email@email.com"';
+  const nullPassword = 'O campo "password" é obrigatório';
+  const wrongPassword = 'O "password" deve ter pelo menos 6 caracteres';
+
+  const { email, password } = req.body;
+
+  if (!email) return res.status(400).json({ message: nullEmail });
+  if (!mailValidator.test(email)) return res.status(400).json({ message: wrongEmail });
+  if (!password) return res.status(400).json({ message: nullPassword });
+  if (password.length < 6) return res.status(400).json({ message: wrongPassword });
+
   return res.status(200).json({ token: tokenValue });
 });
 
