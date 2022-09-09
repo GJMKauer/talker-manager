@@ -34,7 +34,7 @@ Para rodar o projeto, é necessário executar o comando
 ```
 docker-compose up -d
 ```
-na raíz do projeto. Isso fará com que os containers docker sejam orquestrados e a aplicação esteja disponível. Esse comando deve ser executado via terminal dentro do diretório onde está o arquivo **docker-compose.yml**. Após os containers estarem funcionando, você pode realizar as requisições do CRUD através de algum cliente HTTP, como o Insomnia, o Postman, o HTTPie ou até mesmo extensões como o Thunder Client, do VS Code).
+na raíz do projeto. Isso fará com que os containers docker sejam orquestrados e a aplicação esteja disponível. Esse comando deve ser executado via terminal dentro do diretório onde está o arquivo **docker-compose.yml**. Após os containers estarem funcionando, você pode realizar as requisições do CRUD através de algum cliente HTTP, como o Insomnia, o Postman, o HTTPie ou até mesmo extensões como o Thunder Client, do VS Code.
 
 O projeto trata-se de um desafio para consolidar o aprendizado inicial em Node.js e Express, com o desenvolvimento de uma API utilizando os conceitos de CRUD para leitura, cadastro, atualização e remoção de dados de palestrantes. Para isso, foram desenvolvidos alguns endpoints utilizando o módulo fs do Node.js. A validação das requisições é realizada através de um token **gerado pelo módulo Crypto**. Nos projetos futuros aprenderemos a utilizar a biblioteca JWT para criação e validação de requisições via Token.
 
