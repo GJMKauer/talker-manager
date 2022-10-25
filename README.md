@@ -53,7 +53,7 @@ Também foi utilizado o conceito de middlewares para validação das requisiçõ
 <details>
   <summary>A resposta da requisição é a seguinte, com status 200:</summary>
   
-```
+```json
 [
     {
         "name": "Henrique Albuquerque",
@@ -105,7 +105,7 @@ Também foi utilizado o conceito de middlewares para validação das requisiçõ
 <details>
   <summary>A resposta da requisição é a seguinte, com status 200:</summary>
   
-```
+```json
 {
     "name": "Henrique Albuquerque",
     "age": 62,
@@ -133,7 +133,7 @@ Também foi utilizado o conceito de middlewares para validação das requisiçõ
 <details>
   <summary>A estrutura do <code>body</code> da requisição deverá seguir o padrão abaixo:</summary>
   
-```
+```json
 {
   "email": "email@email.com",
   "password": "123456"
@@ -145,7 +145,7 @@ Também foi utilizado o conceito de middlewares para validação das requisiçõ
 <details>
   <summary>A resposta da requisição é a seguinte, com status 201:</summary>
   
-```
+```json
 {
     "token": "36ff25cbe01d68e7"
 }
@@ -170,7 +170,7 @@ Também foi utilizado o conceito de middlewares para validação das requisiçõ
 <details>
   <summary>A estrutura do <code>body</code> da requisição deverá seguir o padrão abaixo:</summary>
   
-```
+```json
 {
   "name": "Danielle Santos",
   "age": 56,
@@ -188,7 +188,7 @@ Essa requisição deve, obrigatoriamente, ter um `token de autenticação` nos h
 <details>
   <summary>A resposta da requisição é a seguinte, com status 201:</summary>
   
-```
+```json
 {
   "id": 1,
   "name": "Danielle Santos",
@@ -226,7 +226,7 @@ Essa requisição deve, obrigatoriamente, ter um `token de autenticação` nos h
 <details>
   <summary>A estrutura do <code>body</code> da requisição deverá seguir o padrão abaixo:</summary>
   
-```
+```json
 {
   "name": "Danielle Santos",
   "age": 56,
@@ -242,7 +242,7 @@ Essa requisição deve, obrigatoriamente, ter um `token de autenticação` nos h
 <details>
   <summary>A resposta da requisição é a seguinte, com status 200:</summary>
   
-```
+```json
 {
   "id": 1,
   "name": "Danielle Santos",
@@ -296,7 +296,7 @@ Essa requisição deve, obrigatoriamente, ter um `token de autenticação` nos h
 <details>
   <summary>A resposta da requisição é a seguinte, com status 200:</summary>
   
-```
+```json
 [
   {
     "id": 1,
