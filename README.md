@@ -51,7 +51,7 @@ Também foi utilizado o conceito de middlewares para validação das requisiçõ
 | `GET` | Retorna uma lista de palestrante cadastrados  | http://localhost:3000/talker
 
 <details>
-  <summary> A resposta da requisição é a seguinte, com status 200:</summary>
+  <summary>A resposta da requisição é a seguinte, com status 200:</summary>
   
 ```
 [
@@ -103,7 +103,7 @@ Também foi utilizado o conceito de middlewares para validação das requisiçõ
 | `GET` | Retorna um palestrante através do id (substituir `:id` por um número) | http://localhost:3000/talker/:id
 
 <details>
-  <summary> A resposta da requisição é a seguinte, com status 200:</summary>
+  <summary>A resposta da requisição é a seguinte, com status 200:</summary>
   
 ```
 {
@@ -120,7 +120,7 @@ Também foi utilizado o conceito de middlewares para validação das requisiçõ
 </details>
 
 <details>
-  <summary> A requisição irá falhar nos seguintes casos:</summary>
+  <summary>A requisição irá falhar nos seguintes casos:</summary>
   - A rota retorna o código <code>400</code>, com a mensagem <code>Pessoa palestrante não encontrada</code> caso o id seja inválido;
 </details>
 <br>
@@ -131,7 +131,7 @@ Também foi utilizado o conceito de middlewares para validação das requisiçõ
 | `POST` | Realiza o login no Backend | http://localhost:3000/login
 
 <details>
-  <summary> A estrutura do <code>body</code> da requisição deverá seguir o padrão abaixo:</summary>
+  <summary>A estrutura do <code>body</code> da requisição deverá seguir o padrão abaixo:</summary>
   
 ```
 {
@@ -143,7 +143,7 @@ Também foi utilizado o conceito de middlewares para validação das requisiçõ
 </details>
 
 <details>
-  <summary> A resposta da requisição é a seguinte, com status 201:</summary>
+  <summary>A resposta da requisição é a seguinte, com status 201:</summary>
   
 ```
 {
@@ -154,7 +154,7 @@ Também foi utilizado o conceito de middlewares para validação das requisiçõ
 </details>
 
 <details>
-  <summary> A requisição irá falhar nos seguintes casos:</summary>
+  <summary>A requisição irá falhar nos seguintes casos:</summary>
   - A rota retorna o código <code>400</code>, com a mensagem <code>O campo "email" é obrigatório</code> caso nenhum e-mail seja informado no body da requisição;<br>
   - A rota retorna o código <code>400</code>, com a mensagem <code>O "email" deve ter o formato "email@email.com"</code> caso seja informado algo diferente de um e-mail no body da requisição;<br>
   - A rota retorna o código <code>400</code>, com a mensagem <code>O campo "password" é obrigatório</code> caso nenhuma senha seja passada no body da requisição;<br>
@@ -168,7 +168,7 @@ Também foi utilizado o conceito de middlewares para validação das requisiçõ
 | `POST` | Insere um novo palestrante no banco de dados | http://localhost:3000/talker
 
 <details>
-  <summary> A estrutura do <code>body</code> da requisição deverá seguir o padrão abaixo:</summary>
+  <summary>A estrutura do <code>body</code> da requisição deverá seguir o padrão abaixo:</summary>
   
 ```
 {
@@ -186,7 +186,7 @@ Essa requisição deve, obrigatoriamente, ter um `token de autenticação` nos h
 </details>
 
 <details>
-  <summary> A resposta da requisição é a seguinte, com status 201:</summary>
+  <summary>A resposta da requisição é a seguinte, com status 201:</summary>
   
 ```
 {
@@ -203,7 +203,7 @@ Essa requisição deve, obrigatoriamente, ter um `token de autenticação` nos h
 </details>
 
 <details>
-  <summary> A requisição irá falhar nos seguintes casos:</summary>
+  <summary>A requisição irá falhar nos seguintes casos:</summary>
   - A rota retorna o código <code>401</code>, com a mensagem <code>Token não encontrado</code> caso não seja informado um token de autorização;<br>
   - A rota retorna o código <code>401</code>, com a mensagem <code>Token inválido</code> caso o token de autorização passado não seja válido;<br>
   - A rota retorna o código <code>400</code>, com a mensagem <code>O campo "name" é obrigatório</code> caso nenhum nome seja informado no body da requisição;<br>
@@ -224,7 +224,7 @@ Essa requisição deve, obrigatoriamente, ter um `token de autenticação` nos h
 | `PUT` | Atualiza um palestrante no banco de dados através do id (substituir `:id` por um número) | http://localhost:3000/talker/:id
 
 <details>
-  <summary> A estrutura do <code>body</code> da requisição deverá seguir o padrão abaixo:</summary>
+  <summary>A estrutura do <code>body</code> da requisição deverá seguir o padrão abaixo:</summary>
   
 ```
 {
@@ -240,7 +240,7 @@ Essa requisição deve, obrigatoriamente, ter um `token de autenticação` nos h
 </details>
 
 <details>
-  <summary> A resposta da requisição é a seguinte, com status 200:</summary>
+  <summary>A resposta da requisição é a seguinte, com status 200:</summary>
   
 ```
 {
@@ -257,7 +257,7 @@ Essa requisição deve, obrigatoriamente, ter um `token de autenticação` nos h
 </details>
 
 <details>
-  <summary> A requisição irá falhar nos seguintes casos:</summary>
+  <summary>A requisição irá falhar nos seguintes casos:</summary>
   - A rota retorna o código <code>401</code>, com a mensagem <code>Token não encontrado</code> caso não seja informado um token de autorização;<br>
   - A rota retorna o código <code>401</code>, com a mensagem <code>Token inválido</code> caso o token de autorização passado não seja válido;<br>
   - A rota retorna o código <code>400</code>, com a mensagem <code>O campo "name" é obrigatório</code> caso nenhum nome seja informado no body da requisição;<br>
@@ -278,11 +278,11 @@ Essa requisição deve, obrigatoriamente, ter um `token de autenticação` nos h
 | `DELETE` | Remove um palestrante do banco de dados | http://localhost:3000/talker/:id
 
 <details>
-  <summary> Essa rota retorna o status 204, <code>sem resposta</code>.</summary>
+  <summary>Essa rota retorna o status 204, <code>sem resposta</code>.</summary>
 </details>
 
 <details>
-  <summary> A requisição irá falhar nos seguintes casos:</summary>
+  <summary>A requisição irá falhar nos seguintes casos:</summary>
   - A rota retorna o código <code>401</code>, com a mensagem <code>Token não encontrado</code> caso não seja informado um token de autorização;<br>
   - A rota retorna o código <code>401</code>, com a mensagem <code>Token inválido</code> caso o token de autorização passado não seja válido.
 </details>
@@ -294,7 +294,7 @@ Essa requisição deve, obrigatoriamente, ter um `token de autenticação` nos h
 | `GET` | Realiza a consulta de palestrantes com base em um filtro (substituir <code>searchTerm</code> pelo nome do palestrante) | http://localhost:3000/talker/search?q=searchTerm
 
 <details>
-  <summary> A resposta da requisição é a seguinte, com status 200:</summary>
+  <summary>A resposta da requisição é a seguinte, com status 200:</summary>
   
 ```
 [
@@ -313,7 +313,7 @@ Essa requisição deve, obrigatoriamente, ter um `token de autenticação` nos h
 </details>
 
 <details>
-  <summary> A requisição irá falhar nos seguintes casos:</summary>
+  <summary>A requisição irá falhar nos seguintes casos:</summary>
   - A rota retorna o código <code>401</code>, com a mensagem <code>Token não encontrado</code> caso não seja informado um token de autorização;<br>
   - A rota retorna o código <code>401</code>, com a mensagem <code>Token inválido</code> caso o token de autorização passado não seja válido.
 </details>
