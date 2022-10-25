@@ -277,9 +277,7 @@ Essa requisição deve, obrigatoriamente, ter um `token de autenticação` nos h
 | -------- | --------------------------------------- | -------------------------------- |
 | `DELETE` | Remove um palestrante do banco de dados | http://localhost:3000/talker/:id |
 
-<details>
-  <summary>Essa rota retorna o status 204, <code>sem resposta</code>.</summary>
-</details>
+Essa rota retorna o status 204, <code>sem resposta</code>.
 
 <details>
   <summary>A requisição irá falhar nos seguintes casos:</summary>
