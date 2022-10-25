@@ -25,20 +25,300 @@ CRUD é um acrônimo para **C**reate, **R**ead, **U**pdate and **D**elete. Em po
 
 Para iniciar o projeto, é necessário possuir o [Docker](https://docs.docker.com/engine/install/ubuntu/) instalado.
 
-Antes de iniciar o projeto, é necessário instalar as dependências dele com o comando
+Após clonar o projeto em seu computador, para iniciá-lo é necessário executar o comando
 ```
-npm install
+docker-compose up -d && docker exec -it talker_manager bash
 ```
+e na sequência
+```
+npm install && npm run dev
+```
+na pasta raíz do projeto. Isso fará com que os containers docker sejam orquestrados e a aplicação esteja disponível.
 
-Para rodar o projeto, é necessário executar o comando
-```
-docker-compose up -d
-```
-na raíz do projeto. Isso fará com que os containers docker sejam orquestrados e a aplicação esteja disponível. Esse comando deve ser executado via terminal dentro do diretório onde está o arquivo **docker-compose.yml**. Após os containers estarem funcionando, você pode realizar as requisições do CRUD através de algum cliente HTTP, como o Insomnia, o Postman, o HTTPie ou até mesmo extensões como o Thunder Client, do VS Code.
+Após isso, você pode realizar as requisições de CRUD através de algum cliente HTTP, como o `Insomnia`, o `Postman`, o `HTTPie` ou até mesmo extensões do VSCode como o `Thunder Client` através dos enpoints listados abaixo.
 
 O projeto trata-se de um desafio para consolidar o aprendizado inicial em Node.js e Express, com o desenvolvimento de uma API utilizando os conceitos de CRUD para leitura, cadastro, atualização e remoção de dados de palestrantes. Para isso, foram desenvolvidos alguns endpoints utilizando o módulo fs do Node.js. A validação das requisições é realizada através de um token **gerado pelo módulo Crypto**. Nos projetos futuros aprenderemos a utilizar a biblioteca JWT para criação e validação de requisições via Token.
 
 Também foi utilizado o conceito de middlewares para validação das requisições; ao tentar submeter uma requisição com dados inválidos, token inválido ou qualquer informação que possa gerar um erro, essa submissão é levada até o middleware que retorna um sinal de erro para o usuário, informando-o o tipo de erro para que ele corrija e realize a requisição novamente.
+
+---
+
+## 📚 Documentação (endpoints)
+
+### 👨🏻‍💼 Talkers
+| Método | Funcionalidade | URL |
+|---|---|---|
+| `GET` | Retorna uma lista de palestrante cadastrados  | http://localhost:3000/talker
+
+<details>
+  <summary> A resposta da requisição é a seguinte, com status 200:</summary>
+  
+```
+[
+    {
+        "name": "Henrique Albuquerque",
+        "age": 62,
+        "id": 1,
+        "talk": {
+            "watchedAt": "23/10/2020",
+            "rate": 5
+        }
+    },
+    {
+        "name": "Heloísa Albuquerque",
+        "age": 67,
+        "id": 2,
+        "talk": {
+            "watchedAt": "23/10/2020",
+            "rate": 5
+        }
+    },
+    {
+        "name": "Ricardo Xavier Filho",
+        "age": 33,
+        "id": 3,
+        "talk": {
+            "watchedAt": "23/10/2020",
+            "rate": 5
+        }
+    },
+    {
+        "name": "Marcos Costa",
+        "age": 24,
+        "id": 4,
+        "talk": {
+            "watchedAt": "23/10/2020",
+            "rate": 5
+        }
+    }
+]
+```
+
+</details>
+<br>
+<br>
+
+| Método | Funcionalidade | URL |
+|---|---|---|
+| `GET` | Retorna um palestrante através do id (substituir `:id` por um número) | http://localhost:3000/talker/:id
+
+<details>
+  <summary> A resposta da requisição é a seguinte, com status 200:</summary>
+  
+```
+{
+    "name": "Henrique Albuquerque",
+    "age": 62,
+    "id": 1,
+    "talk": {
+        "watchedAt": "23/10/2020",
+        "rate": 5
+    }
+}
+```
+
+</details>
+
+<details>
+  <summary> A requisição irá falhar nos seguintes casos:</summary>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>Pessoa palestrante não encontrada</code> caso o id seja inválido;
+</details>
+<br>
+<br>
+
+| Método | Funcionalidade | URL |
+|---|---|---|
+| `POST` | Realiza o login no Backend | http://localhost:3000/login
+
+<details>
+  <summary> A estrutura do <code>body</code> da requisição deverá seguir o padrão abaixo:</summary>
+  
+```
+{
+  "email": "email@email.com",
+  "password": "123456"
+}
+```
+
+</details>
+
+<details>
+  <summary> A resposta da requisição é a seguinte, com status 201:</summary>
+  
+```
+{
+    "token": "36ff25cbe01d68e7"
+}
+```
+
+</details>
+
+<details>
+  <summary> A requisição irá falhar nos seguintes casos:</summary>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>O campo "email" é obrigatório</code> caso nenhum e-mail seja informado no body da requisição;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>O "email" deve ter o formato "email@email.com"</code> caso seja informado algo diferente de um e-mail no body da requisição;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>O campo "password" é obrigatório</code> caso nenhuma senha seja passada no body da requisição;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>O "password" deve ter pelo menos 6 caracteres</code> caso uma senha pequena seja passada no body da requisição.
+</details>
+<br>
+<br>
+
+| Método | Funcionalidade | URL |
+|---|---|---|
+| `POST` | Insere um novo palestrante no banco de dados | http://localhost:3000/talker
+
+<details>
+  <summary> A estrutura do <code>body</code> da requisição deverá seguir o padrão abaixo:</summary>
+  
+```
+{
+  "name": "Danielle Santos",
+  "age": 56,
+  "talk": {
+    "watchedAt": "22/10/2019",
+    "rate": 5
+  }
+}
+```
+
+Essa requisição deve, obrigatoriamente, ter um `token de autenticação` nos headers, no campo `authorization` (obtido após realizar o login).
+
+</details>
+
+<details>
+  <summary> A resposta da requisição é a seguinte, com status 201:</summary>
+  
+```
+{
+  "id": 1,
+  "name": "Danielle Santos",
+  "age": 56,
+  "talk": {
+    "watchedAt": "22/10/2019",
+    "rate": 5
+  }
+}
+```
+
+</details>
+
+<details>
+  <summary> A requisição irá falhar nos seguintes casos:</summary>
+  - A rota retorna o código <code>401</code>, com a mensagem <code>Token não encontrado</code> caso não seja informado um token de autorização;<br>
+  - A rota retorna o código <code>401</code>, com a mensagem <code>Token inválido</code> caso o token de autorização passado não seja válido;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>O campo "name" é obrigatório</code> caso nenhum nome seja informado no body da requisição;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>O "name" deve ter pelo menos 3 caracteres</code> caso um nome muito curto seja informado no body da requisição;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>O campo "age" é obrigatório</code> caso nenhuma idade seja informada no body da requisição;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>A pessoa palestrante deve ser maior de idade</code> caso seja informada uma idade abaixo de 18 anos no body da requisição;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>O campo "talk" é obrigatório</code> caso o campo talk não seja informado no body da requisição;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>O campo "watchedAt" é obrigatório</code> caso o campo watchedAt não seja informado no body da requisição;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>O campo "watchedAt" deve ter o formato "dd/mm/aaaa\</code> caso seja informado uma data inválida no body da requisição;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>O campo "rate" é obrigatório</code> caso o campo rate não seja informado no body da requisição;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>O campo "rate" é obrigatório</code> caso o campo rate informado no body da requisição seja um número abaixo de 1 ou acima de 5.
+</details>
+<br>
+<br>
+
+| Método | Funcionalidade | URL |
+|---|---|---|
+| `PUT` | Atualiza um palestrante no banco de dados através do id (substituir `:id` por um número) | http://localhost:3000/talker/:id
+
+<details>
+  <summary> A estrutura do <code>body</code> da requisição deverá seguir o padrão abaixo:</summary>
+  
+```
+{
+  "name": "Danielle Santos",
+  "age": 56,
+  "talk": {
+    "watchedAt": "22/10/2019",
+    "rate": 5
+  }
+}
+```
+
+</details>
+
+<details>
+  <summary> A resposta da requisição é a seguinte, com status 200:</summary>
+  
+```
+{
+  "id": 1,
+  "name": "Danielle Santos",
+  "age": 56,
+  "talk": {
+    "watchedAt": "22/10/2019",
+    "rate": 4
+  }
+}
+```
+
+</details>
+
+<details>
+  <summary> A requisição irá falhar nos seguintes casos:</summary>
+  - A rota retorna o código <code>401</code>, com a mensagem <code>Token não encontrado</code> caso não seja informado um token de autorização;<br>
+  - A rota retorna o código <code>401</code>, com a mensagem <code>Token inválido</code> caso o token de autorização passado não seja válido;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>O campo "name" é obrigatório</code> caso nenhum nome seja informado no body da requisição;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>O "name" deve ter pelo menos 3 caracteres</code> caso um nome muito curto seja informado no body da requisição;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>O campo "age" é obrigatório</code> caso nenhuma idade seja informada no body da requisição;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>A pessoa palestrante deve ser maior de idade</code> caso seja informada uma idade abaixo de 18 anos no body da requisição;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>O campo "talk" é obrigatório</code> caso o campo talk não seja informado no body da requisição;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>O campo "watchedAt" é obrigatório</code> caso o campo watchedAt não seja informado no body da requisição;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>O campo "watchedAt" deve ter o formato "dd/mm/aaaa\</code> caso seja informado uma data inválida no body da requisição;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>O campo "rate" é obrigatório</code> caso o campo rate não seja informado no body da requisição;<br>
+  - A rota retorna o código <code>400</code>, com a mensagem <code>O campo "rate" é obrigatório</code> caso o campo rate informado no body da requisição seja um número abaixo de 1 ou acima de 5.
+</details>
+<br>
+<br>
+
+| Método | Funcionalidade | URL |
+|---|---|---|
+| `DELETE` | Remove um palestrante do banco de dados | http://localhost:3000/talker/:id
+
+<details>
+  <summary> Essa rota retorna o status 204, <code>sem resposta</code>.</summary>
+</details>
+
+<details>
+  <summary> A requisição irá falhar nos seguintes casos:</summary>
+  - A rota retorna o código <code>401</code>, com a mensagem <code>Token não encontrado</code> caso não seja informado um token de autorização;<br>
+  - A rota retorna o código <code>401</code>, com a mensagem <code>Token inválido</code> caso o token de autorização passado não seja válido.
+</details>
+<br>
+<br>
+
+| Método | Funcionalidade | URL |
+|---|---|---|
+| `GET` | Realiza a consulta de palestrantes com base em um filtro (substituir <code>searchTerm</code> pelo nome do palestrante) | http://localhost:3000/talker/search?q=searchTerm
+
+<details>
+  <summary> A resposta da requisição é a seguinte, com status 200:</summary>
+  
+```
+[
+  {
+    "id": 1,
+    "name": "Danielle Santos",
+    "age": 56,
+    "talk": {
+      "watchedAt": "22/10/2019",
+      "rate": 5,
+    },
+  }
+]
+```
+
+</details>
+
+<details>
+  <summary> A requisição irá falhar nos seguintes casos:</summary>
+  - A rota retorna o código <code>401</code>, com a mensagem <code>Token não encontrado</code> caso não seja informado um token de autorização;<br>
+  - A rota retorna o código <code>401</code>, com a mensagem <code>Token inválido</code> caso o token de autorização passado não seja válido.
+</details>
+<br>
+<br>
 
 ---
 
