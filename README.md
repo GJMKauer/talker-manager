@@ -317,8 +317,6 @@ Essa requisição deve, obrigatoriamente, ter um `token de autenticação` nos h
   - A rota retorna o código <code>401</code>, com a mensagem <code>Token não encontrado</code> caso não seja informado um token de autorização;<br>
   - A rota retorna o código <code>401</code>, com a mensagem <code>Token inválido</code> caso o token de autorização passado não seja válido.
 </details>
-<br>
-<br>
 
 ---
 
