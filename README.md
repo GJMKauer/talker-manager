@@ -46,9 +46,9 @@ Também foi utilizado o conceito de middlewares para validação das requisiçõ
 ## 📚 Documentação (endpoints)
 
 ### 👨🏻‍💼 Talkers
-| Método | Funcionalidade | URL |
-|---|---|---|
-| `GET` | Retorna uma lista de palestrante cadastrados  | http://localhost:3000/talker
+| Método | Funcionalidade                               | URL                          |
+| ------ | -------------------------------------------- | ---------------------------- |
+| `GET`  | Retorna uma lista de palestrante cadastrados | http://localhost:3000/talker |
 
 <details>
   <summary>A resposta da requisição é a seguinte, com status 200:</summary>
@@ -98,9 +98,9 @@ Também foi utilizado o conceito de middlewares para validação das requisiçõ
 <br>
 <br>
 
-| Método | Funcionalidade | URL |
-|---|---|---|
-| `GET` | Retorna um palestrante através do id (substituir `:id` por um número) | http://localhost:3000/talker/:id
+| Método | Funcionalidade                                                        | URL                              |
+| ------ | --------------------------------------------------------------------- | -------------------------------- |
+| `GET`  | Retorna um palestrante através do id (substituir `:id` por um número) | http://localhost:3000/talker/:id |
 
 <details>
   <summary>A resposta da requisição é a seguinte, com status 200:</summary>
@@ -126,9 +126,9 @@ Também foi utilizado o conceito de middlewares para validação das requisiçõ
 <br>
 <br>
 
-| Método | Funcionalidade | URL |
-|---|---|---|
-| `POST` | Realiza o login no Backend | http://localhost:3000/login
+| Método | Funcionalidade             | URL                         |
+| ------ | -------------------------- | --------------------------- |
+| `POST` | Realiza o login no Backend | http://localhost:3000/login |
 
 <details>
   <summary>A estrutura do <code>body</code> da requisição deverá seguir o padrão abaixo:</summary>
@@ -163,9 +163,9 @@ Também foi utilizado o conceito de middlewares para validação das requisiçõ
 <br>
 <br>
 
-| Método | Funcionalidade | URL |
-|---|---|---|
-| `POST` | Insere um novo palestrante no banco de dados | http://localhost:3000/talker
+| Método | Funcionalidade                               | URL                          |
+| ------ | -------------------------------------------- | ---------------------------- |
+| `POST` | Insere um novo palestrante no banco de dados | http://localhost:3000/talker |
 
 <details>
   <summary>A estrutura do <code>body</code> da requisição deverá seguir o padrão abaixo:</summary>
@@ -219,9 +219,9 @@ Essa requisição deve, obrigatoriamente, ter um `token de autenticação` nos h
 <br>
 <br>
 
-| Método | Funcionalidade | URL |
-|---|---|---|
-| `PUT` | Atualiza um palestrante no banco de dados através do id (substituir `:id` por um número) | http://localhost:3000/talker/:id
+| Método | Funcionalidade                                                                           | URL                              |
+| ------ | ---------------------------------------------------------------------------------------- | -------------------------------- |
+| `PUT`  | Atualiza um palestrante no banco de dados através do id (substituir `:id` por um número) | http://localhost:3000/talker/:id |
 
 <details>
   <summary>A estrutura do <code>body</code> da requisição deverá seguir o padrão abaixo:</summary>
@@ -273,9 +273,9 @@ Essa requisição deve, obrigatoriamente, ter um `token de autenticação` nos h
 <br>
 <br>
 
-| Método | Funcionalidade | URL |
-|---|---|---|
-| `DELETE` | Remove um palestrante do banco de dados | http://localhost:3000/talker/:id
+| Método   | Funcionalidade                          | URL                              |
+| -------- | --------------------------------------- | -------------------------------- |
+| `DELETE` | Remove um palestrante do banco de dados | http://localhost:3000/talker/:id |
 
 <details>
   <summary>Essa rota retorna o status 204, <code>sem resposta</code>.</summary>
@@ -289,9 +289,9 @@ Essa requisição deve, obrigatoriamente, ter um `token de autenticação` nos h
 <br>
 <br>
 
-| Método | Funcionalidade | URL |
-|---|---|---|
-| `GET` | Realiza a consulta de palestrantes com base em um filtro (substituir <code>searchTerm</code> pelo nome do palestrante) | http://localhost:3000/talker/search?q=searchTerm
+| Método | Funcionalidade                                                                                                         | URL                                              |
+| ------ | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| `GET`  | Realiza a consulta de palestrantes com base em um filtro (substituir <code>searchTerm</code> pelo nome do palestrante) | http://localhost:3000/talker/search?q=searchTerm |
 
 <details>
   <summary>A resposta da requisição é a seguinte, com status 200:</summary>
