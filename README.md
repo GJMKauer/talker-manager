@@ -55,42 +55,42 @@ Também foi utilizado o conceito de middlewares para validação das requisiçõ
   
 ```json
 [
-    {
-        "name": "Henrique Albuquerque",
-        "age": 62,
-        "id": 1,
-        "talk": {
-            "watchedAt": "23/10/2020",
-            "rate": 5
-        }
-    },
-    {
-        "name": "Heloísa Albuquerque",
-        "age": 67,
-        "id": 2,
-        "talk": {
-            "watchedAt": "23/10/2020",
-            "rate": 5
-        }
-    },
-    {
-        "name": "Ricardo Xavier Filho",
-        "age": 33,
-        "id": 3,
-        "talk": {
-            "watchedAt": "23/10/2020",
-            "rate": 5
-        }
-    },
-    {
-        "name": "Marcos Costa",
-        "age": 24,
-        "id": 4,
-        "talk": {
-            "watchedAt": "23/10/2020",
-            "rate": 5
-        }
+  {
+    "name": "Henrique Albuquerque",
+    "age": 62,
+    "id": 1,
+    "talk": {
+      "watchedAt": "23/10/2020",
+      "rate": 5
     }
+  },
+  {
+    "name": "Heloísa Albuquerque",
+    "age": 67,
+    "id": 2,
+    "talk": {
+      "watchedAt": "23/10/2020",
+      "rate": 5
+    }
+  },
+  {
+    "name": "Ricardo Xavier Filho",
+    "age": 33,
+    "id": 3,
+    "talk": {
+        "watchedAt": "23/10/2020",
+        "rate": 5
+    }
+  },
+  {
+    "name": "Marcos Costa",
+    "age": 24,
+    "id": 4,
+    "talk": {
+      "watchedAt": "23/10/2020",
+      "rate": 5
+    }
+  }
 ]
 ```
 
@@ -107,13 +107,13 @@ Também foi utilizado o conceito de middlewares para validação das requisiçõ
   
 ```json
 {
-    "name": "Henrique Albuquerque",
-    "age": 62,
-    "id": 1,
-    "talk": {
-        "watchedAt": "23/10/2020",
-        "rate": 5
-    }
+  "name": "Henrique Albuquerque",
+  "age": 62,
+  "id": 1,
+  "talk": {
+    "watchedAt": "23/10/2020",
+    "rate": 5
+  }
 }
 ```
 
@@ -147,7 +147,7 @@ Também foi utilizado o conceito de middlewares para validação das requisiçõ
   
 ```json
 {
-    "token": "36ff25cbe01d68e7"
+  "token": "36ff25cbe01d68e7"
 }
 ```
 
