@@ -167,6 +167,8 @@ Também foi utilizado o conceito de middlewares para validação das requisiçõ
 | ------ | -------------------------------------------- | ---------------------------- |
 | `POST` | Insere um novo palestrante no banco de dados | http://localhost:3000/talker |
 
+Essa requisição deve, obrigatoriamente, ter um `token de autenticação` nos headers, no campo `authorization` (obtido após realizar o login).
+
 <details>
   <summary>A estrutura do <code>body</code> da requisição deverá seguir o padrão abaixo:</summary>
   
@@ -180,8 +182,6 @@ Também foi utilizado o conceito de middlewares para validação das requisiçõ
   }
 }
 ```
-
-Essa requisição deve, obrigatoriamente, ter um `token de autenticação` nos headers, no campo `authorization` (obtido após realizar o login).
 
 </details>
 
